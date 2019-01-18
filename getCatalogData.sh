@@ -1,0 +1,1 @@
+for ((i; i<1420; i = i+5)); do wget -nd -nc -nv -e robots=off -l 1 -r -A hdf5 --content-disposition --header="API-Key: 5e8664e232c2b2ba3fe7a37b7977f31e" http://www.illustris-project.org/api/Illustris-3/files/groupcat-${i}/?format=api; done
