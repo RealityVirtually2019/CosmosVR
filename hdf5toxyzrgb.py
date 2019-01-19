@@ -1,16 +1,20 @@
 import illustris_python as il
-from matplotlib import cm
+import numpy as np
+from matplotlib import cm, colors
 
 def make_xyzrgb(snapnum, parttype, field, cmap, roomsize=50., basePath = './LowResData'):
 	particles = il.snapshot.loadSubset(basePath,135,parttype,fields=['Coordinates',field])
-	data = np.ndarray([len(particles),6])
+	data = np.ndarray([len(particles[field]),6])
 
-	if 'Photometrics' in field:
+	if parttype == 'stars':
 		# bands = ['u','b','v','k','g','r','i','z']
-		fielddata = 10**(-0.4*particles[field][2])
-	else:
+		fielddata = 10**(-0.4*particles[field][:,2])
+	elif parttype == 'gas':
 		fielddata = particles[field]
-	norm = cm.LogNorm(max(fielddata.min(),1), fielddata.max()) #to make sure all vals positive
+	elif parttype == 'dm':
+		fielddata = abs(particles[field])
+	
+	norm = colors.LogNorm(max(fielddata.min(), fielddata.max()/1e6), fielddata.max()) #to make sure all vals positive
 	m = cm.ScalarMappable(norm = norm, cmap = cmap)
 
 	data[:,0:3] = particles['Coordinates']
@@ -28,7 +32,10 @@ def make_xyzrgb(snapnum, parttype, field, cmap, roomsize=50., basePath = './LowR
 
 
 def lowres():
-	for snapnum in range(1, 135, 9):
+	for snapnum in range(1, 136, 10):
 		make_xyzrgb(snapnum, 'stars', 'GFM_StellarPhotometrics', cm.RdBu)
+		print("Stars done")
 		make_xyzrgb(snapnum, 'gas', 'Density', cm.magma)
+		print("Gas done")
 		make_xyzrgb(snapnum, 'dm', 'Potential', cm.viridis)
+		print("DM done, snap %d done" % snapnum)
