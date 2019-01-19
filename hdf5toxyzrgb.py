@@ -3,8 +3,8 @@ import numpy as np
 from matplotlib import cm, colors
 
 def make_xyzrgb(snapnum, parttype, field, cmap, roomsize=50., basePath = './LowResData'):
-	particles = il.snapshot.loadSubset(basePath,135,parttype,fields=['Coordinates',field])
-	data = np.ndarray([len(particles[field]),6])
+	particles = il.snapshot.loadSubset(basePath,snapnum,parttype,fields=['Coordinates',field])
+	data = np.ndarray([len(particles['Coordinates']),6])
 
 	if parttype == 'stars':
 		# bands = ['u','b','v','k','g','r','i','z']
@@ -33,8 +33,11 @@ def make_xyzrgb(snapnum, parttype, field, cmap, roomsize=50., basePath = './LowR
 
 def lowres():
 	for snapnum in range(1, 136, 10):
-		make_xyzrgb(snapnum, 'stars', 'GFM_StellarPhotometrics', cm.RdBu)
-		print("Stars done")
+		try:
+			make_xyzrgb(snapnum, 'stars', 'GFM_StellarPhotometrics', cm.RdBu)
+			print("Stars done")
+		except KeyError:
+			print("No stars yet")
 		make_xyzrgb(snapnum, 'gas', 'Density', cm.magma)
 		print("Gas done")
 		make_xyzrgb(snapnum, 'dm', 'Potential', cm.viridis)

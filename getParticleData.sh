@@ -1,1 +1,1 @@
-for ((i; i<1400; i = i+150)); do wget -nd -nc -nv -e robots=off -l 1 -r -A hdf5 --content-disposition --header="API-Key: 5e8664e232c2b2ba3fe7a37b7977f31e" http://www.illustris-project.org/api/Illustris-3-Subbox1/files/snapshot-${i}/?format=api; done
+for ((i; i<1400; i = i+150)); do wget -nd -nc -nv -e robots=off -l 1 -r -A hdf5 --content-disposition --header="API-Key: 5e8664e232c2b2ba3fe7a37b7977f31e" http://www.illustris-project.org/api/Illustris-1-Subbox1/files/snapshot-${i}/?format=api; done
