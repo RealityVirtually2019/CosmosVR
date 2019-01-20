@@ -149,7 +149,7 @@ public class SteamVR_Controller
 		}
 
 		return devices[deviceIndex];
-	}
+	}   
 
 	public static void Update()
 	{

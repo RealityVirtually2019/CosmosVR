@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Launcher.unity
+    guid: 6dd7aa025e67877438a578e782abc7d5
+  - enabled: 1
+    path: Assets/Scenes/cosmosLowRes.unity
+    guid: d0915c643440ac8439be8e10c24881c2
+  - enabled: 1
+    path: Assets/Scenes/cosmosHighRes.unity
+    guid: c30ed87fee317e2448a0c772405db6e9
+  m_configObjects: {}

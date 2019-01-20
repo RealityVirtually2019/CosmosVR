@@ -47,8 +47,8 @@ namespace PointCloudExporter
 		
 		void Update ()
 		{
-			material.SetFloat("_Size", size);
-			material.SetTexture("_MainTex", sprite);
+			//material.SetFloat("_Size", size);
+			//material.SetTexture("_MainTex", sprite);
 
 			if (displaceFiredAt + time > Time.time) {
 				Displace(Time.deltaTime);
