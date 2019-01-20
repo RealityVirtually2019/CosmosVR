@@ -82,7 +82,11 @@ public class FilterChangeController : MonoBehaviour
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
-            SceneManager.LoadScene(2);
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (sceneIndex == 1)
+                SceneManager.LoadScene(2);
+            else if (sceneIndex == 2)
+                SceneManager.LoadScene(1);
         }
 
     }
