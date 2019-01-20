@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: fcaeb30e6b5f3794c93b376a85ac060c, type: 3}
+  m_Texture: {fileID: 2800000, guid: e160288d76b95754cb6ea4fe9a1932ea, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2009186159911783648}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Helmet UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
