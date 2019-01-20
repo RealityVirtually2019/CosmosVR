@@ -11,10 +11,16 @@ public class RaycastHandler : MonoBehaviour
 
     public GameObject crossHair;
 
+    public Text hudDescriptionText;
 
+
+    //Color 
+    Color notSelected = new Color(0.6089801f, 0.7054334f, 0.8018868f, 0.1176471f);
+    Color selected = new Color(0.3607919f, 0.8207547f, 0.3523051f, 0.2352941f);
     // Start is called before the first frame update
     void Start()
     {
+        hudDescriptionText = GameObject.Find("hudDescriptionText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -24,16 +30,18 @@ public class RaycastHandler : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
+            crossHair.GetComponent<RawImage>().color = selected;
             if(hit.transform.tag == "Galaxy")
             {
-                galaxy.SetActive(true);
-                galaxy.GetComponent<TextMesh>().text = "Galaxy is visible";
+                hudDescriptionText.text = "Galaxy";
+                //galaxy.GetComponent<TextMesh>().text = "Galaxy is visible";
             }
         }
         else
         {
-            // galaxy.SetActive(false);
-            galaxy.GetComponent<TextMesh>().text = "";
+            crossHair.GetComponent<RawImage>().color = notSelected;
+            //galaxy.GetComponent<TextMesh>().text = "";
+            hudDescriptionText.text = "";
 
         }
     }

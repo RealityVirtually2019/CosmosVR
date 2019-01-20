@@ -42,7 +42,7 @@ namespace PointCloudExporter
 
 		void Start ()
 		{
-			Generate();
+			//Generate();
 		}
 		
 		void Update ()
