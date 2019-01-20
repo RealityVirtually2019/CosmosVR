@@ -9,6 +9,8 @@ public class RaycastHandler : MonoBehaviour
 
     public GameObject galaxy;
 
+    public GameObject crossHair;
+
 
     // Start is called before the first frame update
     void Start()
