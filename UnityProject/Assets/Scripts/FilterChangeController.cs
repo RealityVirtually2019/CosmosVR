@@ -21,35 +21,32 @@ public class FilterChangeController : MonoBehaviour
         filterState = FilterState.STARS;
         trackedObject = GetComponent<SteamVR_TrackedObject>();
         particleUIText = GameObject.Find("particleTypeText").GetComponent<Text>();
+
+        if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
+        {
+            DaydreamControllerHandler.OnSwipeRight += IncrementState;
+            DaydreamControllerHandler.OnSwipeLeft += DecrementState;
+            DaydreamControllerHandler.OnAppClicked += ChangeScene;
+
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        var device = SteamVR_Controller.Input((int)trackedObject.index);
-
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
         {
-            //change state
-            switch (filterState)
-            { 
-              case FilterState.STARS:
-                    filterState = FilterState.GAS;
-                    break;
-                case FilterState.GAS:
-                    filterState = FilterState.DARKMATTER;
-                    break;
-                case FilterState.DARKMATTER:
-                    filterState = FilterState.ALL;
-                    break;
-                case FilterState.ALL:
-                    filterState = FilterState.STARS;
-                    break;
-                default:
-                    filterState = FilterState.STARS;
-                    break;
-            }
+            HandleDaydreamInput();
         }
+        else if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.VIVE)
+        {
+            HandleViveInput();
+        }
+        else
+        {
+            Debug.Log("Platform not selected");
+        }
+
         switch (filterState)
         {
             case FilterState.STARS:
@@ -79,15 +76,65 @@ public class FilterChangeController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void HandleDaydreamInput()
+    {
+
+    }
+
+    void HandleViveInput()
+    {
+        var device = SteamVR_Controller.Input((int)trackedObject.index);
+
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            //change state
+            IncrementState();
+        }
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
         {
-            int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            if (sceneIndex == 1)
-                SceneManager.LoadScene(2);
-            else if (sceneIndex == 2)
-                SceneManager.LoadScene(1);
+            ChangeScene();
+        }
+    }
+
+    void ChangeScene()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (sceneIndex == 1)
+            SceneManager.LoadScene(2);
+        else if (sceneIndex == 2)
+            SceneManager.LoadScene(1);
+    }
+
+    void IncrementState()
+    {
+        int numStates = System.Enum.GetValues(typeof(FilterState)).Length;
+
+        int currentState = (int)filterState;
+        currentState++;
+
+        if(currentState >= numStates)
+        {
+            currentState = 0;
         }
 
+        filterState = (FilterState)currentState;
+    }
+
+    void DecrementState()
+    {
+        int numStates = System.Enum.GetValues(typeof(FilterState)).Length;
+
+        int currentState = (int)filterState;
+        currentState--;
+
+        if (currentState < 0)
+        {
+            currentState = numStates - 1;
+        }
+
+        filterState = (FilterState)currentState;
     }
 }

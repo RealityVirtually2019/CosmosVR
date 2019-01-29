@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Launcher.unity
+    guid: 6dd7aa025e67877438a578e782abc7d5
+  - enabled: 1
     path: Assets/Scenes/Daydream/cosmosLowRes_Daydream.unity
+    guid: 15cf2d6318faf437db48c7cc6b9d4280
+  - enabled: 1
+    path: Assets/Scenes/Daydream/cosmosHighRes_Daydream.unity
     guid: 057b45e60a52d4a30b747fa98c9db7ee
   m_configObjects: {}
