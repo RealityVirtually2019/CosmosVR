@@ -5,12 +5,13 @@ using UnityEngine;
 public class FlyAroundDaydreamController : MonoBehaviour
 {
     public GameObject vr_camera;
+    public AudioSource JetpackAudio;
     Vector3 vr_cameraDirection;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        JetpackAudio = GameObject.Find("JetPack").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,12 +54,40 @@ public class FlyAroundDaydreamController : MonoBehaviour
         {
             flySpeed = tempSpeed * 3.0f;
         }
+
+        if((flySpeed > 0.1f) || (flySpeed < -0.1f))
+        {
+            PlayJetPackAudio();
+        }
+        else
+        {
+            StopJetpackAudio();
+        }
+
         transform.Translate(vr_cameraDirection * Time.deltaTime * flySpeed);
 
+    }
+
+    void PlayJetPackAudio()
+    {
+        if(!JetpackAudio.isPlaying)
+        {
+            JetpackAudio.Play();
+        }
+    }
+
+    void StopJetpackAudio()
+    {
+        if (JetpackAudio.isPlaying)
+        {
+            JetpackAudio.Stop();
+        }
     }
 
     void HandleViveInput()
     {
         //TODO - add Vive stuff here
     }
+
+
 }
