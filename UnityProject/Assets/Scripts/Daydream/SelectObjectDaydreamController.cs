@@ -7,11 +7,14 @@ public class SelectObjectDaydreamController : MonoBehaviour
 {
 
     TextMesh text;
-
+    public SpriteRenderer controllerWireframe;
+    public ParticleSystem glow;
 
     // Start is called before the first frame update
     void Start()
     {
+        glow = GameObject.Find("Glow").GetComponent<ParticleSystem>();
+        controllerWireframe = GameObject.Find("ControllerWireframe").GetComponent<SpriteRenderer>();
         text = GameObject.Find("HelmetText").GetComponent<TextMesh>();
     }
 
@@ -31,8 +34,13 @@ public class SelectObjectDaydreamController : MonoBehaviour
             {
                 Debug.Log("hit");
                 text.text = "Click the (-) (app button) to put on the headset";
+                controllerWireframe.enabled = true;
+                if (glow.isStopped)
+                {
+                    glow.Play();
+                }
 
-                if (GvrControllerInput.GetDevice(GvrControllerHand.Dominant).GetButton(GvrControllerButton.App))
+                    if (GvrControllerInput.GetDevice(GvrControllerHand.Dominant).GetButton(GvrControllerButton.App))
                 {
                     //Load Scene
                     SceneManager.LoadScene(1);
@@ -41,11 +49,16 @@ public class SelectObjectDaydreamController : MonoBehaviour
             else
             {
                 text.text = "";
+                controllerWireframe.enabled = false;
+                glow.Stop();
             }
         }
         else
         {
             text.text = "";
+            controllerWireframe.enabled = false;
+            glow.Stop();
+
         }
     }
 }

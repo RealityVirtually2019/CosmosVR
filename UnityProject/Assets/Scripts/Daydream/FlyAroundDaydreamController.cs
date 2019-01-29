@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class FlyAroundDaydreamController : MonoBehaviour
 {
     public GameObject vr_camera;
     public AudioSource JetpackAudio;
     Vector3 vr_cameraDirection;
+
+    double trackStartTime;
+
+    void StartMusic()
+    {
+        trackStartTime = AudioSettings.dspTime;
+        JetpackAudio.PlayScheduled(trackStartTime);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +64,7 @@ public class FlyAroundDaydreamController : MonoBehaviour
             flySpeed = tempSpeed * 3.0f;
         }
 
-        if((flySpeed > 0.1f) || (flySpeed < -0.1f))
+        if( (flySpeed > 0.1f) || (flySpeed < -0.1f))
         {
             PlayJetPackAudio();
         }
@@ -72,7 +81,7 @@ public class FlyAroundDaydreamController : MonoBehaviour
     {
         if(!JetpackAudio.isPlaying)
         {
-            JetpackAudio.Play();
+            StartMusic();
         }
     }
 
