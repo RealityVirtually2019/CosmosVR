@@ -16,7 +16,14 @@ public class SelectObjectDaydreamController : MonoBehaviour
     void Start()
     {
         glow = GameObject.Find("Glow").GetComponent<ParticleSystem>();
-        controllerWireframe = GameObject.Find("ControllerWireframe").GetComponent<SpriteRenderer>();
+        if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
+        {
+            controllerWireframe = GameObject.Find("ControllerWireframe").GetComponent<SpriteRenderer>();
+        }
+        else if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.OCULUSGO)
+        {
+            controllerWireframe = GameObject.Find("OculusControllerWireframe").GetComponent<SpriteRenderer>();
+        }
         text = GameObject.Find("HelmetText").GetComponent<TextMesh>();
     }
 
