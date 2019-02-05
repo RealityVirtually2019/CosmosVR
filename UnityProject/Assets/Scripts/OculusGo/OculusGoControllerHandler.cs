@@ -6,6 +6,7 @@ public class OculusGoControllerHandler : MonoBehaviour
 {
     public static bool touchpadIsClicked;
     public static bool touchpadIsTouched;
+    public static bool triggerIsClicked;
     public static bool appIsClicked;
     public static Vector2 touchPos;
 
@@ -23,6 +24,9 @@ public class OculusGoControllerHandler : MonoBehaviour
 
     public delegate void RightClicked();
     public static event RightClicked OnRightClicked;
+
+    public delegate void TouchpadClicked();
+    public static event TouchpadClicked OnTouchpadClicked;
 
 
     public enum SwipeState {NOTSTARTED, INPROGRESS};
@@ -70,6 +74,8 @@ public class OculusGoControllerHandler : MonoBehaviour
                 if (OnLeftClicked != null)
                     OnLeftClicked();
             }
+            if (OnTouchpadClicked != null)
+                OnTouchpadClicked();
         }
 
         //swipe events
@@ -106,6 +112,14 @@ public class OculusGoControllerHandler : MonoBehaviour
         {
             touchpadIsTouched = false;
             touchPos = defaultTouchPos;
+        }
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            triggerIsClicked = true;
+        }
+        else
+        {
+            triggerIsClicked = false;
         }
 
 

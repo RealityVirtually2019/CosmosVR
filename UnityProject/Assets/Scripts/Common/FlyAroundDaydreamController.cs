@@ -49,25 +49,11 @@ public class FlyAroundDaydreamController : MonoBehaviour
     //TODO Refactor Oculus and Daydream inputs (too much duplicate code)
     void HandleOculusGoInput()
     {
-        float tempSpeed = 0.0f;
         float flySpeed = 0.0f;
 
-        if (OculusGoControllerHandler.touchPos.y > 0.6f)
+        if(OculusGoControllerHandler.triggerIsClicked)
         {
-            tempSpeed = 1.5f;
-        }
-        else if (OculusGoControllerHandler.touchPos.y < -0.6f)
-        {
-            tempSpeed = -1.5f;
-        }
-
-        if (OculusGoControllerHandler.touchpadIsTouched)
-        {
-            flySpeed = tempSpeed;
-        }
-        if (OculusGoControllerHandler.touchpadIsClicked)
-        {
-            flySpeed = tempSpeed * 3.0f;
+            flySpeed = 2.0f;
         }
 
         if ((flySpeed > 0.1f) || (flySpeed < -0.1f))

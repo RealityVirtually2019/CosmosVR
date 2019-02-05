@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Oculus/Launcher_Oculus.unity
     guid: 72887f6d4636a468aa5283492964ee71
   - enabled: 1
+    path: Assets/Scenes/Oculus/ControllerLayout.unity
+    guid: 2a761e2532c0741fd9d7541b8cb32d3b
+  - enabled: 1
     path: Assets/Scenes/Oculus/cosmosLowRes_Oculus.unity
     guid: 15cf2d6318faf437db48c7cc6b9d4280
   - enabled: 1

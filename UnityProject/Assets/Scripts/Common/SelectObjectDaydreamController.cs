@@ -22,7 +22,7 @@ public class SelectObjectDaydreamController : MonoBehaviour
         }
         else if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.OCULUSGO)
         {
-            controllerWireframe = GameObject.Find("OculusControllerWireframe").GetComponent<SpriteRenderer>();
+            controllerWireframe = GameObject.Find("OculusControllerWireframe").GetComponent<SpriteRenderer>();  
         }
         text = GameObject.Find("HelmetText").GetComponent<TextMesh>();
     }
@@ -43,7 +43,6 @@ public class SelectObjectDaydreamController : MonoBehaviour
         {
             if (hit.transform.tag == "Helmet")
             {
-                Debug.Log("hit");
                 if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
                 {
                     text.text = "Click the (-) (app button) to put on the headset";

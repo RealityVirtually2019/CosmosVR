@@ -13,14 +13,14 @@ public class FilterChangeController : MonoBehaviour
     Text particleUIText;
 
     public enum FilterState { STARS,GAS,DARKMATTER,ALL};
-    public FilterState filterState;
+    FilterState filterState;
 
     // Start is called before the first frame update
     void Start()
     {
         filterState = FilterState.STARS;
 
-        particleUIText = GameObject.Find("particleTypeText").GetComponent<Text>();
+        particleUIText = GameObject.Find("ParticleType Text").GetComponent<Text>();
 
         if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
         {
@@ -98,10 +98,10 @@ public class FilterChangeController : MonoBehaviour
     void ChangeScene()
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (sceneIndex == 1)
+        if (sceneIndex == 2)
+            SceneManager.LoadScene(3);
+        else if (sceneIndex == 3)
             SceneManager.LoadScene(2);
-        else if (sceneIndex == 2)
-            SceneManager.LoadScene(1);
     }
 
     void IncrementState()
