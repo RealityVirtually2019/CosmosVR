@@ -13,7 +13,7 @@ public class FilterChangeController : MonoBehaviour
     Text particleUIText;
 
     public enum FilterState { STARS,GAS,DARKMATTER,ALL};
-    FilterState filterState;
+    public FilterState filterState;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,10 @@ public class FilterChangeController : MonoBehaviour
         filterState = FilterState.STARS;
 
         particleUIText = GameObject.Find("ParticleType Text").GetComponent<Text>();
+    }
 
+    public void StartTrackingButtonPresses()
+    {
         if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
         {
             DaydreamControllerHandler.OnSwipeRight += IncrementState;

@@ -26,6 +26,11 @@ public class FlyAroundDaydreamController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if((int)GameStateManager.GameState <= (int)GameStateManager.GameStates.UNIVERSEFINISHED)
+        {
+            return;
+        }
+
         vr_cameraDirection = vr_camera.transform.forward;
         if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.DAYDREAM)
         {
