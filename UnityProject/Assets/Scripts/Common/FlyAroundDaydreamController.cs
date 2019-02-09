@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 public class FlyAroundDaydreamController : MonoBehaviour
 {
     public GameObject vr_camera;
-    public AudioSource JetpackAudio;
+    AudioSource JetpackAudio;
     Vector3 vr_cameraDirection;
 
     double trackStartTime;

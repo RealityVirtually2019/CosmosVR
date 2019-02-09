@@ -49,7 +49,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 208
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1008820298187534463}
   m_Layer: 0
   m_Name: GameAudio
-  m_TagString: Untagged
+  m_TagString: music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c3ce537de39b95749bb7c6a4cc7c52ea, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.432
+  m_Volume: 0.27
   m_Pitch: 1
   Loop: 0
   Mute: 0
