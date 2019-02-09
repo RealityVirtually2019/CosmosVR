@@ -15,13 +15,8 @@ public class RaycastHandler : MonoBehaviour
 
 
     //Color 
-    Color notSelected = new Color(0.6089801f, 0.7054334f, 0.8018868f, 0.1176471f);
-    Color selected = new Color(0.3607919f, 0.8207547f, 0.3523051f, 0.2352941f);
-    // Start is called before the first frame update
-    void Start()
-    {
-        hudDescriptionText = GameObject.Find("HudDescriptionText").GetComponent<Text>();
-    }
+    Color notSelected = new Color(0.2f, 0.5f, 0.7f, 0.6f);
+    Color selected = new Color(0.0f, 0.7f, 0.0f, 0.9f);
 
     // Update is called once per frame
     void FixedUpdate()
@@ -30,15 +25,20 @@ public class RaycastHandler : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            crossHair.GetComponent<RawImage>().color = selected;
+            crossHair.GetComponent<Image>().color = selected;
             if(hit.transform.tag == "Galaxy")
             {
                 hudDescriptionText.text = "Galaxy";
             }
+            else
+            {
+                crossHair.GetComponent<Image>().color = notSelected;
+                hudDescriptionText.text = "";
+            }
         }
         else
         {
-            crossHair.GetComponent<RawImage>().color = notSelected;
+            crossHair.GetComponent<Image>().color = notSelected;
             hudDescriptionText.text = "";
 
         }
