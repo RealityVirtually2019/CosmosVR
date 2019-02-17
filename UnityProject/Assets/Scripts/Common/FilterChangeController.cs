@@ -35,7 +35,8 @@ public class FilterChangeController : MonoBehaviour
         {
             OculusGoControllerHandler.OnSwipeRight += IncrementState;
             OculusGoControllerHandler.OnSwipeLeft += DecrementState;
-            OculusGoControllerHandler.OnAppClicked += ChangeScene;
+            //Commented out for now until Scene Change is bug free
+            //OculusGoControllerHandler.OnAppClicked += ChangeScene;
         }
         else if (PlatformInUse.CurrentPlatform == PlatformInUse.Platform.VIVE)
         {

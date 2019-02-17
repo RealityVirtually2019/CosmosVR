@@ -14,6 +14,19 @@ public class GameStateManager : MonoBehaviour
     public PromptTextManager promptTextManager;
     public FilterChangeController filterChangeController;
 
+    //https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html
+    private void Awake()
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("GameManager");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +114,7 @@ public class GameStateManager : MonoBehaviour
                 promptTextManager.setTextVisible();
                 break;
             case GameStates.ALL:
-                promptTextManager.setTextInivisble();
+                promptTextManager.SetText("Thanks for trying out CosmosVR!");
                 filterChangeController.StartTrackingButtonPresses();
                 break;
             default:
@@ -128,15 +141,6 @@ public class GameStateManager : MonoBehaviour
                 break;
             default:
                 break;
-            //case GameStates.START:
-            //case GameStates.UNIVERSEISBIG:
-            //case GameStates.UNIVERSEFINISHED:
-            //case GameStates.STARS:
-            //case GameStates.GAS:
-            //case GameStates.DARKMATTER:
-            //case GameStates.ALL:
-                //break;
-
         }
     }
 
